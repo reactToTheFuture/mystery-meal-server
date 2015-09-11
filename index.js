@@ -1,6 +1,5 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var aws = require('./config').aws;
 var knox = require('knox');
 var knoxClient = knox.createClient({
   key: process.env.ACCESSKEYID,
