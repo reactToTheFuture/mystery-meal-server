@@ -3,9 +3,9 @@ var bodyParser = require('body-parser');
 var aws = require('./config').aws;
 var knox = require('knox');
 var knoxClient = knox.createClient({
-  key: aws.accessKeyId,
-  secret: aws.secretAccessKey,
-  bucket: 'mysterymealapp'
+  key: process.env.ACCESSKEYID,
+  secret: process.env.SECRETACCESSKEY,
+  bucket: process.env.BUCKET
 });
 var app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -34,6 +34,6 @@ app.post('/', function(req, res) {
   });
   request.end(buf);
 });
-var server = app.listen(3000, function() {
+var server = app.listen(process.env.PORT || 3000, function() {
   console.log('Server running at http://localhost:' + server.address().port);
 });
