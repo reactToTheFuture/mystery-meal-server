@@ -7,9 +7,8 @@ var knoxClient = knox.createClient({
   bucket: process.env.BUCKET
 });
 var app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser({limit: '5mb'}));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ limit: '5mb', extended: true }));
+app.use(bodyParser.json({limit: '5mb'}));
 app.post('/', function(req, res) {
   var theKey = Object.keys(req.body)[0];
   var obj = JSON.parse(theKey + req.body[theKey]);
